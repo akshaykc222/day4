@@ -1,49 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:seed_sales/screens/bussiness/body.dart';
-import 'package:seed_sales/screens/user/body.dart';
+import 'package:seed_sales/screens/tax/components/add_tax.dart';
+import 'package:seed_sales/screens/unint/componets/unitfrom.dart';
 
-import '../../../componets.dart';
-import '../../../constants.dart';
+import '../../componets.dart';
+import '../../constants.dart';
 
+class Unit extends StatelessWidget {
+  const Unit({Key? key}) : super(key: key);
 
-
-class BussinessList extends StatefulWidget {
-  const BussinessList({Key? key}) : super(key: key);
-
-  @override
-  State<BussinessList> createState() => _BussinessListState();
-}
-
-class _BussinessListState extends State<BussinessList> {
-  List<String> _bussinessList = [
-    "Bussiness 1",
-    "Bussiness 2",
-    "Bussines 3",
-    "Bussiness 4"
-  ];
   @override
   Widget build(BuildContext context) {
+
+    void showAlertDelete1(BuildContext _context) {
+      showModalBottomSheet(
+          context: _context,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          builder: (_) {
+            return Wrap(
+              children: const [
+                UnitForm()
+
+              ],
+            );
+          });
+    }
+
+
+    List<String> userList = ["inch", "cm", ];
     return Scaffold(
       extendBody: true,
-      appBar: appBar("Business", [], context),
+      appBar: appBar("Unit", [], context),
       resizeToAvoidBottomInset: false,
-      body: Expanded(
-        child: Container(
-          color: lightBlack,
-          child: GridView.builder(
-              shrinkWrap: true,
-              itemCount: _bussinessList.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
-                  childAspectRatio:
-                      MediaQuery.of(context).size.width * 0.3 / 90),
-              itemBuilder: (_, index) {
-                return UserListTile(title: _bussinessList[index]);
-              }),
-        ),
+      body: Container(
+        color: lightBlack,
+        child: GridView.builder(
+            shrinkWrap: true,
+            itemCount: userList.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 5,
+                childAspectRatio:
+                MediaQuery.of(context).size.width * 0.3 / 90),
+            itemBuilder: (_, index) {
+              return TaxListTile(title: userList[index]);
+            }),
       ),
       bottomNavigationBar: const BottomAppBar(
         color: blackColor,
@@ -55,8 +59,7 @@ class _BussinessListState extends State<BussinessList> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: lightBlack,
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => const Bussiness()));
+          showAlertDelete1(context);
         },
         child: const Center(
           child: Icon(Icons.add),
@@ -67,9 +70,9 @@ class _BussinessListState extends State<BussinessList> {
   }
 }
 
-class UserListTile extends StatelessWidget {
+class TaxListTile extends StatelessWidget {
   final String title;
-  const UserListTile({Key? key, required this.title}) : super(key: key);
+  const TaxListTile({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

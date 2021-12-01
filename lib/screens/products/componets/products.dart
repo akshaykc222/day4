@@ -19,10 +19,10 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Search(),
+        // const Search(),
         Row(
           children: [
-            headingText("Treatments"),
+            headingText("Products"),
             InkWell(
                 onTap: () {
                   showModalBottomSheet(

@@ -1,47 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:seed_sales/screens/bussiness/body.dart';
-import 'package:seed_sales/screens/user/body.dart';
+import 'package:seed_sales/screens/region/componets/regionlist.dart';
 
-import '../../../componets.dart';
-import '../../../constants.dart';
-
-
-
-class BussinessList extends StatefulWidget {
-  const BussinessList({Key? key}) : super(key: key);
+import '../../componets.dart';
+import '../../constants.dart';
+class RegionList extends StatefulWidget {
+  const RegionList({Key? key}) : super(key: key);
 
   @override
-  State<BussinessList> createState() => _BussinessListState();
+  State<RegionList> createState() => _RegionListState();
 }
 
-class _BussinessListState extends State<BussinessList> {
-  List<String> _bussinessList = [
-    "Bussiness 1",
-    "Bussiness 2",
-    "Bussines 3",
-    "Bussiness 4"
-  ];
+class _RegionListState extends State<RegionList> {
+
+  void showAlertDelete1(BuildContext _context) {
+    showModalBottomSheet(
+        context: _context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        builder: (_) {
+          return Wrap(
+            children: const [
+              RegionForm()
+
+            ],
+          );
+        });
+  }
   @override
   Widget build(BuildContext context) {
+    List<String> userList = ["dubai", "india", "usa"];
     return Scaffold(
       extendBody: true,
-      appBar: appBar("Business", [], context),
+      appBar: appBar("Region", [], context),
       resizeToAvoidBottomInset: false,
       body: Expanded(
         child: Container(
           color: lightBlack,
           child: GridView.builder(
               shrinkWrap: true,
-              itemCount: _bussinessList.length,
+              itemCount: userList.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 5,
                   crossAxisSpacing: 5,
                   childAspectRatio:
-                      MediaQuery.of(context).size.width * 0.3 / 90),
+                  MediaQuery.of(context).size.width * 0.3 / 90),
               itemBuilder: (_, index) {
-                return UserListTile(title: _bussinessList[index]);
+                return RegionListTile(title: userList[index]);
               }),
         ),
       ),
@@ -55,8 +62,7 @@ class _BussinessListState extends State<BussinessList> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: lightBlack,
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => const Bussiness()));
+
         },
         child: const Center(
           child: Icon(Icons.add),
@@ -67,9 +73,9 @@ class _BussinessListState extends State<BussinessList> {
   }
 }
 
-class UserListTile extends StatelessWidget {
+class RegionListTile extends StatelessWidget {
   final String title;
-  const UserListTile({Key? key, required this.title}) : super(key: key);
+  const RegionListTile({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -16,6 +16,8 @@ const String customers = "/customers";
 const String designation = "/Designation";
 const String reports = "/reports";
 const String roleList = "/roleList";
+const String taxNav="/tax";
+const String unitNav="/unit";
 //strings
 const String search = "Search";
 const String currentuser = "Current User";

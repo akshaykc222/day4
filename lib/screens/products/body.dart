@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:seed_sales/componets.dart';
 
 import '../../constants.dart';
+import '../../sizeconfig.dart';
 import 'componets/categrory.dart';
 import 'componets/products.dart';
 
@@ -67,8 +68,8 @@ class _AddTreatmentsState extends State<AddTreatments> {
       scrollDirection: Axis.vertical,
       child: Column(
         children: [
-          headingText("Add treatment"),
-          columUserTextFileds(
+          headingText("Add Product"),
+          columUserTextFiledsBlack(
               "Enter Title", "Title", TextInputType.name, titleController),
           // Padding(
           //   padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
@@ -129,25 +130,32 @@ class _AddTreatmentsState extends State<AddTreatments> {
               },
             ),
           ),
-          columUserTextFileds("Enter Purchase rate", "Purchase rate",
+          columUserTextFiledsBlack("Enter Purchase rate", "Purchase rate",
               TextInputType.number, purchaseController),
-          columUserTextFileds(
+          columUserTextFiledsBlack(
               "Enter Mrp", "Mrp", TextInputType.number, mrpController),
-          columUserTextFileds("Enter Sales Percentage", "Sales Percentage",
+          columUserTextFiledsBlack("Enter Sales Percentage", "Sales Percentage",
               TextInputType.number, salespController),
-          columUserTextFileds("Enter Sales Rate", "Sales Rate",
+          columUserTextFiledsBlack("Enter Sales Rate", "Sales Rate",
               TextInputType.number, salesRController),
-          columUserTextFileds("Enter Expiry date", "Expiry date",
+          columUserTextFiledsBlack("Enter Expiry date", "Expiry date",
               TextInputType.datetime, expiryController),
 
           // Visibility(
           //     visible: !isService, child: columUserTextFileds("Duration")),
-          InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child:
-                  defaultButton(MediaQuery.of(context).size.width * 0.5, "Add"))
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              defaultButton(SizeConfig.screenWidth!*0.5, add),
+
+              InkWell(
+                  onTap: (){
+                    Navigator.pop(context);
+                  },
+                  child:const Text(cancel,style: TextStyle(color: blackColor),))
+            ],
+          ),
+          spacer(10)
         ],
       ),
     );

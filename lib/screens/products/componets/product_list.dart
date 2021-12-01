@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:seed_sales/screens/products/body.dart';
 import 'package:seed_sales/screens/tax/components/add_tax.dart';
 
-import '../../componets.dart';
-import '../../constants.dart';
+import '../../../componets.dart';
+import '../../../constants.dart';
 
-class Tax extends StatelessWidget {
-  const Tax({Key? key}) : super(key: key);
+
+
+class ProductList extends StatelessWidget {
+  const ProductList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +21,65 @@ class Tax extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
           ),
           builder: (_) {
-            return Wrap(
-              children: const [
-                 TaxForm()
-
-              ],
-            );
+            return const AddTreatments();
           });
     }
 
 
-    List<String> userList = ["tax1", "gst", "igst"];
+    List<String> userList = ["product1", "product2", "product3"];
     return Scaffold(
       extendBody: true,
-      appBar: appBar("Tax", [], context),
+      appBar: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 80),
+        child: Container(
+          color: blackColor,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Padding(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: lightBlack, shape: BoxShape.circle),
+                    child: const Icon(
+                      Icons.arrow_back,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextField(
+                    style: TextStyle(color: Colors.white),
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                        hintText: "search",
+                        labelText: "Search",
+                        labelStyle: TextStyle(color: Colors.white),
+                        hintStyle: TextStyle(color: Colors.white),
+                        suffixIcon: Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        ),
+                        fillColor: lightBlack,
+                        filled: true),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       resizeToAvoidBottomInset: false,
       body: Container(
         color: lightBlack,
@@ -45,7 +93,7 @@ class Tax extends StatelessWidget {
                 childAspectRatio:
                 MediaQuery.of(context).size.width * 0.3 / 90),
             itemBuilder: (_, index) {
-              return TaxListTile(title: userList[index]);
+              return ProductListTile(title: userList[index]);
             }),
       ),
       bottomNavigationBar: const BottomAppBar(
@@ -69,9 +117,9 @@ class Tax extends StatelessWidget {
   }
 }
 
-class TaxListTile extends StatelessWidget {
+class ProductListTile extends StatelessWidget {
   final String title;
-  const TaxListTile({Key? key, required this.title}) : super(key: key);
+  const ProductListTile({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

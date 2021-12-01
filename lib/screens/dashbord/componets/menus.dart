@@ -101,6 +101,13 @@ class MenuCard extends StatelessWidget {
           case "Customers":
             Navigator.pushNamed(context, customers);
             break;
+
+          case "Tax":
+            Navigator.pushNamed(context, taxNav);
+            break;
+          case "Unit":
+            Navigator.pushNamed(context, unitNav);
+            break;
           case "Designations":
             Navigator.pushNamed(context, designation);
             break;

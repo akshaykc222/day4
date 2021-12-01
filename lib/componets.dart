@@ -127,7 +127,41 @@ Widget columUserTextFileds(String label, String hint, TextInputType keyboard,
     ),
   );
 }
-
+Widget columUserTextFiledsBlack(String label, String hint, TextInputType keyboard,
+    TextEditingController controller) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+    child: TextFormField(
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "Please Enter value for $hint";
+        }
+        return null;
+      },
+      controller: controller,
+      keyboardType: keyboard,
+      style: const TextStyle(color: blackColor),
+      decoration: InputDecoration(
+          labelText: label,
+          labelStyle: const TextStyle(
+              fontSize: 20, fontWeight: FontWeight.bold, color: blackColor),
+          floatingLabelBehavior: FloatingLabelBehavior.auto,
+          hintText: hint,
+          hintStyle: const TextStyle(color: blackColor),
+          filled: true,
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: blackColor,
+              width: 2.0,
+            ),
+          ),
+          disabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: blackColor)),
+          border: const UnderlineInputBorder(
+              borderSide: BorderSide(color: blackColor))),
+    ),
+  );
+}
 Widget headingText(String txt) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
