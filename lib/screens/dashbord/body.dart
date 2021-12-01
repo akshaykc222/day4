@@ -105,19 +105,9 @@ class _DashBoardState extends State<DashBoard>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                  ),
-                  child: IconButton(
-                      icon: const Icon(
-                        Icons.search,
-                        color: whiteColor,
-                      ),
-                      onPressed: () {}),
-                ),
 
-                const SizedBox(width: 40), // The dummy child
+
+
 
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -126,6 +116,18 @@ class _DashBoardState extends State<DashBoard>
                   child: IconButton(
                       icon: const Icon(
                         Icons.person,
+                        color: whiteColor,
+                      ),
+                      onPressed: () {}),
+                ),
+                const SizedBox(width: 40), // The dummy child
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                  ),
+                  child: IconButton(
+                      icon: const Icon(
+                        Icons.settings,
                         color: whiteColor,
                       ),
                       onPressed: () {}),
