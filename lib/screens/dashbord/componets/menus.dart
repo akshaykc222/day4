@@ -20,8 +20,8 @@ class _AdminMenuState extends State<AdminMenu> {
       icon: Icons.person,
     ),
 
-    MenuModel(title: "unit,tax", icon: Icons.room_service_outlined),
-    MenuModel(title: "tax", icon: Icons.room_service_outlined),
+    MenuModel(title: "Unit", icon: Icons.room_service_outlined),
+    MenuModel(title: "Tax", icon: Icons.room_service_outlined),
     MenuModel(title: "Products", icon: Icons.production_quantity_limits),
     MenuModel(title: "Customers", icon: Icons.person),
     MenuModel(title: "Sales", icon: Icons.vpn_key_outlined),
