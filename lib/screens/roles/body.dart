@@ -41,18 +41,24 @@ class UserRoles extends StatelessWidget {
       //     ],
       //   ),
       // ),
+      bottomNavigationBar:const BottomAppBar(
+        color: black90,
+        clipBehavior: Clip.antiAlias,
+        shape: CircularNotchedRectangle(),
+        child: SizedBox(
+          width: double.infinity,
+          height: 50,
 
+        ),
+
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: lightBlack,
         onPressed: () {
-          Navigator.pushNamed(context, roleList);
+          Navigator.pop(context);
         },
-        child: Center(
-          child: InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, roleList);
-              },
-              child: const Icon(Icons.add)),
+        child:const Center(
+          child:  Icon(Icons.done,color: textColor,size: 30,),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

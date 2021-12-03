@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:seed_sales/componets.dart';
 import 'package:seed_sales/constants.dart';
 import 'package:seed_sales/screens/roles/body.dart';
+import 'package:seed_sales/screens/roles/componets/add_role.dart';
 import 'package:seed_sales/sizeconfig.dart';
 
 class RoleList extends StatefulWidget {
@@ -28,6 +29,21 @@ class _RoleListState extends State<RoleList> {
     "admin",
     "manager",
   ];
+  void showAlertAdd(BuildContext _context){
+    showModalBottomSheet(
+        context: _context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        builder: (_) {
+          return Wrap(
+            children: const [
+              RoleForm()
+
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +52,7 @@ class _RoleListState extends State<RoleList> {
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 80),
         child: Container(
+          height: 80,
           color: blackColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -60,7 +77,8 @@ class _RoleListState extends State<RoleList> {
                 ),
               ),
               Container(
-                width: MediaQuery.of(context).size.width * 0.8,
+                height: 50,
+                width: MediaQuery.of(context).size.width * 0.5,
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
@@ -105,8 +123,7 @@ class _RoleListState extends State<RoleList> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: lightBlack,
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => const UserRoles()));
+         showAlertAdd(context);
         },
         child: const Center(
           child: Icon(
@@ -177,53 +194,62 @@ class RoleListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5), color: blackColor),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                  color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            spacer(5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
+    return InkWell(
+      onTap: (){
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => const UserRoles()));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5), color: blackColor),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                      color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              spacer(10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: lightBlack),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset(
+                          'assets/icons/trash.svg',
+                          width: 20,
+                          height: 20,
+                          color: whiteColor,
+                        ),
+                      )),
+                  Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: lightBlack),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SvgPicture.asset(
-                        'assets/icons/trash.svg',
+                        'assets/icons/edit.svg',
                         width: 20,
                         height: 20,
                         color: whiteColor,
                       ),
-                    )),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: lightBlack),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(
-                      'assets/icons/edit.svg',
-                      width: 20,
-                      height: 20,
-                      color: whiteColor,
                     ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -28,6 +28,7 @@ const String create = "Create";
 const String add = "Add";
 const String cancel = "Cancel";
 const String addUserRole = "Add User Role";
+const String appName="Fresh";
 //images
 
 //colors

@@ -16,7 +16,7 @@ class BussinessList extends StatefulWidget {
 }
 
 class _BussinessListState extends State<BussinessList> {
-  List<String> _bussinessList = [
+ final List<String> _bussinessList = [
     "Bussiness 1",
     "Bussiness 2",
     "Bussines 3",
@@ -26,24 +26,74 @@ class _BussinessListState extends State<BussinessList> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      appBar: appBar("Business", [], context),
-      resizeToAvoidBottomInset: false,
-      body: Expanded(
+      appBar: PreferredSize(
+        preferredSize: Size(MediaQuery.of(context).size.width, 80 ),
         child: Container(
-          color: lightBlack,
-          child: GridView.builder(
-              shrinkWrap: true,
-              itemCount: _bussinessList.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
-                  childAspectRatio:
-                      MediaQuery.of(context).size.width * 0.3 / 90),
-              itemBuilder: (_, index) {
-                return UserListTile(title: _bussinessList[index]);
-              }),
+          height: 80,
+          color: blackColor,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Padding(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: lightBlack, shape: BoxShape.circle),
+                    child: const Icon(
+                      Icons.arrow_back,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: 50,
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextField(
+                    style: TextStyle(color: Colors.white),
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                        hintText: "search",
+                        labelText: "Search",
+                        labelStyle: TextStyle(color: Colors.white),
+                        hintStyle: TextStyle(color: Colors.white),
+                        suffixIcon: Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        ),
+                        fillColor: lightBlack,
+                        filled: true),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
+      ),
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        color: lightBlack,
+        child: GridView.builder(
+            shrinkWrap: true,
+            itemCount: _bussinessList.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 5,
+                childAspectRatio:
+                    MediaQuery.of(context).size.width * 0.3 / 90),
+            itemBuilder: (_, index) {
+              return UserListTile(title: _bussinessList[index]);
+            }),
       ),
       bottomNavigationBar: const BottomAppBar(
         color: blackColor,
@@ -81,12 +131,15 @@ class UserListTile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              title,
-              style: const TextStyle(
-                  color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                title,
+                style: const TextStyle(
+                    color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ),
-            spacer(5),
+            spacer(10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

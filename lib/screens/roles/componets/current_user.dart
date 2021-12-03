@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants.dart';
 
@@ -7,29 +8,28 @@ class CurrentUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.9,
-      height: 35,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.white,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              currentuser,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w800),
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children:  [
+       const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text(
+            currentuser,
+            style: TextStyle(
+                color: textColor,
+                fontSize: 18,
+                fontWeight: FontWeight.w800),
           ),
-          Icon(Icons.login_outlined)
-        ],
-      ),
+        ),
+        InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, roleList);
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SvgPicture.asset('assets/icons/edit.svg',color: textColor,),
+            ))
+      ],
     );
   }
 }

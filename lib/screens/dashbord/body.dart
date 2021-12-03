@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import 'package:seed_sales/componets.dart';
 import 'package:seed_sales/constants.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:seed_sales/screens/dashbord/componets/dashboard_items.dart';
 import 'package:seed_sales/screens/dashbord/componets/menus.dart';
 import 'package:seed_sales/screens/dashbord/provider/dashboard_provider.dart';
+import 'package:seed_sales/sizeconfig.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -46,19 +46,48 @@ class _DashBoardState extends State<DashBoard>
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Fresh",
-          style: TextStyle(fontSize: 20),
+      appBar: PreferredSize(
+        preferredSize: Size(SizeConfig.screenWidth!, 100),
+        child: Container(
+          height: 80,
+          color: blackColor,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children:  [
+             Padding(
+                padding: const EdgeInsets.only(left: 25,bottom: 15),
+                child: Text(appName,style: TextStyle(color: textColor,fontSize: SizeConfig.blockSizeHorizontal!*6,fontWeight: FontWeight.bold),),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: 50,
+                child: const Padding(
+                  padding: EdgeInsets.only(bottom:15),
+                  child: TextField(
+                    style: TextStyle(color: Colors.white),
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                        hintText: "search",
+                        labelText: "Search",
+                        labelStyle: TextStyle(color: Colors.white),
+                        hintStyle: TextStyle(color: Colors.white),
+                        suffixIcon: Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        ),
+                        fillColor: lightBlack,
+                        filled: true),
+                  ),
+                ),
+              ),
+              SvgPicture.asset('assets/icons/sliders.svg',color: textColor,)
+
+            ],
+          ),
         ),
-        backgroundColor: primaryColor,
-        actions: const [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.search),
-          )
-        ],
       ),
       body: Stack(children: [
         Column(
@@ -76,7 +105,10 @@ class _DashBoardState extends State<DashBoard>
                 reverseDuration: const Duration(milliseconds: 300),
                 child: Container(
                   width: double.infinity,
-                  color: whiteColor,
+                  decoration: const BoxDecoration(
+                    color: whiteColor,
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10))
+                  ),
                   child: provider.isOpen
                       ? const AdminMenu()
                       : Container(

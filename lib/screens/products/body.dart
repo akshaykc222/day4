@@ -133,14 +133,30 @@ class _AddTreatmentsState extends State<AddTreatments> {
           columUserTextFiledsBlack("Enter Purchase rate", "Purchase rate",
               TextInputType.number, purchaseController),
           columUserTextFiledsBlack(
-              "Enter Mrp", "Mrp", TextInputType.number, mrpController),
+              "Enter MRP", "MRP", TextInputType.number, mrpController),
           columUserTextFiledsBlack("Enter Sales Percentage", "Sales Percentage",
               TextInputType.number, salespController),
           columUserTextFiledsBlack("Enter Sales Rate", "Sales Rate",
               TextInputType.number, salesRController),
+          columUserTextFiledsBlack("Enter Tax Rate", "Tax Rate",
+              TextInputType.number, salesRController),
           columUserTextFiledsBlack("Enter Expiry date", "Expiry date",
               TextInputType.datetime, expiryController),
-
+         const Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Product Images',style: TextStyle(color: blackColor,fontWeight: FontWeight.bold,fontSize: 18),),
+          ),
+          SizedBox(
+            width: 50,
+            height: 50,
+            child: Container(
+              color: Colors.grey,
+              child:const Center(
+                child: Icon(Icons.add_a_photo_outlined),
+              ),
+            ),
+          ),
+          spacer(10),
           // Visibility(
           //     visible: !isService, child: columUserTextFileds("Duration")),
           Row(

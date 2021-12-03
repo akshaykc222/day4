@@ -17,11 +17,14 @@ class ProductList extends StatelessWidget {
     void showAlertDelete1(BuildContext _context) {
       showModalBottomSheet(
           context: _context,
+          isScrollControlled: true,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
           builder: (_) {
-            return const AddTreatments();
+            return Container(
+                height: MediaQuery.of(context).size.height*0.8,
+                child: const AddTreatments());
           });
     }
 
@@ -33,8 +36,9 @@ class ProductList extends StatelessWidget {
         preferredSize: Size(MediaQuery.of(context).size.width, 80),
         child: Container(
           color: blackColor,
+          height: 80,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               InkWell(
@@ -55,26 +59,32 @@ class ProductList extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextField(
-                    style: TextStyle(color: Colors.white),
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                        hintText: "search",
-                        labelText: "Search",
-                        labelStyle: TextStyle(color: Colors.white),
-                        hintStyle: TextStyle(color: Colors.white),
-                        suffixIcon: Icon(
-                          Icons.search,
-                          color: Colors.white,
-                        ),
-                        fillColor: lightBlack,
-                        filled: true),
+              Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    height: 50,
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: TextField(
+                        style: TextStyle(color: Colors.white),
+                        cursorColor: Colors.white,
+                        decoration: InputDecoration(
+                            hintText: "search",
+                            labelText: "Search",
+                            labelStyle: TextStyle(color: Colors.white),
+                            hintStyle: TextStyle(color: Colors.white),
+                            suffixIcon: Icon(
+                              Icons.search,
+                              color: Colors.white,
+                            ),
+                            fillColor: lightBlack,
+                            filled: true),
+                      ),
+                    ),
                   ),
-                ),
+
+                ],
               ),
             ],
           ),
@@ -131,12 +141,28 @@ class ProductListTile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              title,
-              style: const TextStyle(
-                  color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                title,
+                style: const TextStyle(
+                    color: textColor, fontSize: 16, fontWeight: FontWeight.bold),
+              ),
             ),
             spacer(5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:const [
+                Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text("\$1500",style: TextStyle(color: textColor,fontWeight: FontWeight.bold,fontSize: 19),),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Text("\$1600",style: TextStyle(color: textColor,fontWeight: FontWeight.bold,fontSize: 17,decoration: TextDecoration.lineThrough,decorationColor: textColor,decorationStyle: TextDecorationStyle.solid),),
+                )
+              ],
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

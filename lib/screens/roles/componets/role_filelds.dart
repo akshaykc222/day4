@@ -5,6 +5,7 @@ import 'package:seed_sales/componets.dart';
 import 'package:seed_sales/screens/roles/componets/roles_list.dart';
 
 import '../../../constants.dart';
+import 'current_user.dart';
 
 class RoleFields extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _RoleFieldsState extends State<RoleFields> {
   final List<String> permissionList = [
     "Role",
     "Create user",
-    "Bussiness",
+    "Business",
     "Services",
     "Products",
     "Reports"
@@ -28,6 +29,9 @@ class _RoleFieldsState extends State<RoleFields> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+        const  CurrentUser(),
+        spacer(10),
+        const  Divider(color: textColor,),
           // GestureDetector(
           //     onTap: () {
           //       Navigator.pushNamed(context, roleList);
@@ -98,6 +102,7 @@ class _UserRolesPermissionState extends State<UserRolesPermission> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
+        height: 160,
         decoration: BoxDecoration(
             color: black90,
             borderRadius: BorderRadius.circular(10),
@@ -111,11 +116,16 @@ class _UserRolesPermissionState extends State<UserRolesPermission> {
             ]),
         child: Row(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+          const  SizedBox(
+              width: 10,
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   const Icon(Icons.phone_android_outlined),
                   Text(
@@ -138,154 +148,72 @@ class _UserRolesPermissionState extends State<UserRolesPermission> {
             ),
             spacer(10),
             Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: lightBlack,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "View",
-                                style: TextStyle(color: textColor),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Switch(
-                                value: view,
-                                onChanged: (value) {
-                                  setState(() {
-                                    view = value;
-                                  });
-                                },
-                                activeTrackColor: Colors.lightGreenAccent,
-                                activeColor: Colors.green,
-                                inactiveTrackColor: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: lightBlack,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "Create",
-                                style: TextStyle(color: textColor),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Switch(
-                                value: create,
-                                onChanged: (value) {
-                                  setState(() {
-                                    create = value;
-                                  });
-                                },
-                                activeTrackColor: Colors.lightGreenAccent,
-                                activeColor: Colors.green,
-                                inactiveTrackColor: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                  children:const [
+                    RoleAction(title: "View"),
+                    RoleAction(title: "Create"),
                   ],
                 ),
                 Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: lightBlack,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "Edit",
-                                style: TextStyle(color: textColor),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Switch(
-                                value: edit,
-                                onChanged: (value) {
-                                  setState(() {
-                                    edit = value;
-                                  });
-                                },
-                                activeTrackColor: Colors.lightGreenAccent,
-                                activeColor: Colors.green,
-                                inactiveTrackColor: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: lightBlack,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "Delete",
-                                style: TextStyle(color: textColor),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Switch(
-                                value: delete,
-                                onChanged: (value) {
-                                  setState(() {
-                                    delete = value;
-                                  });
-                                },
-                                activeTrackColor: Colors.lightGreenAccent,
-                                activeColor: Colors.green,
-                                inactiveTrackColor: Colors.grey,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
+                  children:const [
+                    RoleAction(title: "Edit"),
+                    RoleAction(title: "Delete"),
                   ],
                 )
               ],
             )
+          ],
+        ),
+      ),
+    );
+  }
+}
+class RoleAction extends StatefulWidget {
+  final String title;
+  const RoleAction({Key? key,required this.title}) : super(key: key);
+
+  @override
+  State<RoleAction> createState() => _RoleActionState();
+}
+
+class _RoleActionState extends State<RoleAction> {
+  bool edit = false;
+  @override
+  Widget build(BuildContext context) {
+
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: lightBlack,
+          borderRadius: BorderRadius.circular(8)
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+             Padding(
+               padding: const EdgeInsets.only(top: 8),
+               child: Text(
+                 widget.title,
+                 style: const TextStyle(color: textColor),
+               ),
+             ),
+            Switch(
+              value: edit,
+              onChanged: (value) {
+                setState(() {
+                  edit = value;
+                });
+              },
+              activeTrackColor: Colors.lightGreenAccent,
+              activeColor: Colors.green,
+              inactiveTrackColor: Colors.grey,
+            ),
           ],
         ),
       ),

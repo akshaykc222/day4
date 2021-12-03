@@ -28,6 +28,8 @@ class _CreateBussinessState extends State<CreateBussiness> {
         // columUserTextFileds("Branch Under"),
         columUserTextFileds("Enter Business Name", "Bussiness name",
             TextInputType.name, bussinessController),
+                    columUserTextFileds("Enter Address", "Address",
+            TextInputType.streetAddress, addressController),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           child: DropdownButtonFormField(
@@ -66,8 +68,7 @@ class _CreateBussinessState extends State<CreateBussiness> {
             },
           ),
         ),
-        columUserTextFileds("Enter Address", "Address",
-            TextInputType.streetAddress, addressController),
+
         columUserTextFileds("Enter Pincode", "Pin code", TextInputType.number,
             pincodeController),
         columUserTextFileds("Enter Country name", "Country", TextInputType.name,

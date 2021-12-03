@@ -89,6 +89,7 @@ class _DesignationTileState extends State<DesignationTile> {
         widget.model.designation,
         style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
+
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
