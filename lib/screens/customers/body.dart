@@ -14,7 +14,7 @@ class CustomerList extends StatelessWidget {
       body: ListView.builder(
         itemCount: 3,
           itemBuilder: (_,index){
-            return const CustomerListTile();
+            return  Container();
           }
       ),
     );
