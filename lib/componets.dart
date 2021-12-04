@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:seed_sales/constants.dart';
+import 'package:seed_sales/sizeconfig.dart';
 
 PreferredSizeWidget appBar(
     String title, List<Widget> widgetList, BuildContext context) {
@@ -169,6 +171,61 @@ Widget headingText(String txt) {
       txt,
       style: const TextStyle(
           color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+    ),
+  );
+}
+TextStyle textStyle(double fontSize,FontWeight fontWeight){
+  return TextStyle(
+    color: textColor,
+    fontSize: fontSize,
+    fontWeight: fontWeight
+  );
+}
+PreferredSize appBarWithSearch(BuildContext context,String screenName,){
+  SizeConfig().init(context);
+  return PreferredSize(
+    preferredSize: Size(SizeConfig.screenWidth!, 100),
+    child: Container(
+      height: 80,
+      color: blackColor,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children:  [
+          Padding(
+            padding: const EdgeInsets.only(left: 25,bottom: 15),
+            child: Text(appName,style: TextStyle(color: textColor,fontSize: SizeConfig.blockSizeHorizontal!*6,fontWeight: FontWeight.bold),),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.5,
+            height: 50,
+            child: const Padding(
+              padding: EdgeInsets.only(bottom:15),
+              child: TextField(
+                style: TextStyle(color: Colors.white),
+                cursorColor: Colors.white,
+                decoration: InputDecoration(
+                    hintText: "search",
+                    labelText: "Search",
+                    labelStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(color: Colors.white),
+                    suffixIcon: Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    ),
+                    fillColor: lightBlack,
+                    filled: true),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 25,bottom: 15),
+            child: SvgPicture.asset('assets/icons/sliders.svg',color: textColor,),
+          )
+
+
+        ],
+      ),
     ),
   );
 }

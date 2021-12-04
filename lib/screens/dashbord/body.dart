@@ -3,10 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import 'package:seed_sales/constants.dart';
+import 'package:seed_sales/constants.dart';
 import 'package:seed_sales/screens/dashbord/componets/dashboard_items.dart';
 import 'package:seed_sales/screens/dashbord/componets/menus.dart';
 import 'package:seed_sales/screens/dashbord/provider/dashboard_provider.dart';
 import 'package:seed_sales/sizeconfig.dart';
+
+import '../../constants.dart';
+
+
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -83,7 +88,7 @@ class _DashBoardState extends State<DashBoard>
                   ),
                 ),
               ),
-              SvgPicture.asset('assets/icons/sliders.svg',color: textColor,)
+
 
             ],
           ),

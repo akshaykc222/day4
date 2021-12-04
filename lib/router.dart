@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:seed_sales/screens/customers/body.dart';
 import 'package:seed_sales/screens/dashbord/body.dart';
 import 'package:seed_sales/screens/products/componets/product_list.dart';
+import 'package:seed_sales/screens/region/body.dart';
 import 'package:seed_sales/screens/roles/componets/roles_list.dart';
 import 'package:seed_sales/screens/tax/body.dart';
 import 'package:seed_sales/screens/unint/body.dart';
@@ -35,16 +37,16 @@ class RouterPage {
         return MaterialPageRoute(builder: (_) => const ProductList());
       case unitNav:
         return MaterialPageRoute(builder: (_) => const Unit());
-      // case subCategory:
-      //   return MaterialPageRoute(builder: (_) => const SubCategory());
+      case regionNav:
+        return MaterialPageRoute(builder: (_) => const RegionList());
       // case servicesAdd:
       //   return MaterialPageRoute(builder: (_) => const ServicesAdd());
       // case order:
       //   return MaterialPageRoute(builder: (_) => const OrderProducts());
       // case enquiry:
       //   return MaterialPageRoute(builder: (_) => const Enquiry());
-      // case customers:
-      //   return MaterialPageRoute(builder: (_) => const Customers());
+      case customers:
+        return MaterialPageRoute(builder: (_) => const CustomerList());
       case designation:
         return MaterialPageRoute(builder: (_) => const Designations());
       // case reports:

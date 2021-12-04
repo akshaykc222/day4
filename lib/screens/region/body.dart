@@ -62,7 +62,7 @@ class _RegionListState extends State<RegionList> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: lightBlack,
         onPressed: () {
-
+          showAlertDelete1(context);
         },
         child: const Center(
           child: Icon(Icons.add),
@@ -87,12 +87,15 @@ class RegionListTile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              title,
-              style: const TextStyle(
-                  color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                title,
+                style: const TextStyle(
+                    color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ),
-            spacer(5),
+            spacer(10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

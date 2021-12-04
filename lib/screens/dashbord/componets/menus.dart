@@ -112,6 +112,9 @@ class MenuCard extends StatelessWidget {
           case "Designations":
             Navigator.pushNamed(context, designation);
             break;
+          case "Region":
+            Navigator.pushNamed(context, regionNav);
+            break;
           case "Reports":
             Navigator.pushNamed(context, reports);
             break;
