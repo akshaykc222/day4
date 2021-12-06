@@ -3,9 +3,9 @@ class CustomerModel {
     required this.name,
     required this.billingAddress,
     required this.shippingAddress,
-    required this.email,
+     this.email,
     required this.phone1,
-    required this.phone2,
+     this.phone2,
     required this.cashType,
     required this.cashTypeRate,
     required this.country,
@@ -15,25 +15,26 @@ class CustomerModel {
     required this.taxNumber,
     required this.payTermNum,
     required this.payTermType,
-    required this.creditLimit,
+    required this.creditLimit,this.pendingAmt,
   });
 
   String name;
   String billingAddress;
   String shippingAddress;
-  String email;
-  String phone1;
-  String phone2;
+  String? email;
+  int phone1;
+  int? phone2;
   String cashType;
   String cashTypeRate;
   String country;
   String state;
   String region;
-  String zipcode;
+  int zipcode;
   String taxNumber;
-  String payTermNum;
+  int payTermNum;
   String payTermType;
-  String creditLimit;
+  double creditLimit;
+  double? pendingAmt;
 
   factory CustomerModel.fromJson(Map<String, dynamic> json) => CustomerModel(
     name: json["name"],
@@ -51,7 +52,7 @@ class CustomerModel {
     taxNumber: json["tax_number"],
     payTermNum: json["pay_term_num"],
     payTermType: json["pay_term_type"],
-    creditLimit: json["credit_limit"],
+    creditLimit: json["credit_limit"], pendingAmt:json['pendingAmt']
   );
 
   Map<String, dynamic> toJson() => {
@@ -71,5 +72,6 @@ class CustomerModel {
     "pay_term_num": payTermNum,
     "pay_term_type": payTermType,
     "credit_limit": creditLimit,
+    "pendingAmt":pendingAmt
   };
 }

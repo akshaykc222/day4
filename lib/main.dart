@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:seed_sales/constants.dart';
 import 'package:seed_sales/router.dart';
 import 'package:seed_sales/screens/Desingation/provider/desingation_provider.dart';
+import 'package:seed_sales/screens/customers/components/provider/customer_provider.dart';
 import 'package:seed_sales/screens/dashbord/provider/dashboard_provider.dart';
 
 import 'screens/user/provider/bussiness_provider.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => DashBoardProvider()),
         ChangeNotifierProvider(create: (_) => DesignationProvider()),
         ChangeNotifierProvider(create: (_) => BussinessProvider()),
-        ChangeNotifierProvider(create: (_) => RoleProvider())
+        ChangeNotifierProvider(create: (_) => RoleProvider()),
+        ChangeNotifierProvider(create: (_) => CustomerProvider()),
       ],
       child: MaterialApp(
         color: blackColor,

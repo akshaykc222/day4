@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seed_sales/screens/customers/body.dart';
+import 'package:seed_sales/screens/customers/components/customerlist.dart';
 import 'package:seed_sales/screens/dashbord/body.dart';
 import 'package:seed_sales/screens/products/componets/product_list.dart';
 import 'package:seed_sales/screens/region/body.dart';

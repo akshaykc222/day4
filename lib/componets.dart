@@ -107,11 +107,11 @@ Widget columUserTextFileds(String label, String hint, TextInputType keyboard,
       },
       controller: controller,
       keyboardType: keyboard,
-      style: const TextStyle(color: textColor),
+      style: const TextStyle(color: textColor,fontSize: 18),
       decoration: InputDecoration(
           labelText: label,
           labelStyle: const TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, color: textColor),
+              fontSize: 16, fontWeight: FontWeight.bold, color: textColor),
           floatingLabelBehavior: FloatingLabelBehavior.auto,
           hintText: hint,
           hintStyle: const TextStyle(color: textColor),
@@ -130,7 +130,7 @@ Widget columUserTextFileds(String label, String hint, TextInputType keyboard,
   );
 }
 Widget columUserTextFiledsBlack(String label, String hint, TextInputType keyboard,
-    TextEditingController controller) {
+    TextEditingController controller,{bool? multiLine}) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
     child: TextFormField(
@@ -142,11 +142,11 @@ Widget columUserTextFiledsBlack(String label, String hint, TextInputType keyboar
       },
       controller: controller,
       keyboardType: keyboard,
-      style: const TextStyle(color: blackColor),
+      style: const TextStyle(color: blackColor,fontSize: 18),
       decoration: InputDecoration(
           labelText: label,
           labelStyle: const TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, color: blackColor),
+              fontSize: 16, fontWeight: FontWeight.bold, color: blackColor),
           floatingLabelBehavior: FloatingLabelBehavior.auto,
           hintText: hint,
           hintStyle: const TextStyle(color: blackColor),
@@ -189,39 +189,44 @@ PreferredSize appBarWithSearch(BuildContext context,String screenName,){
       height: 80,
       color: blackColor,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
         children:  [
           Padding(
             padding: const EdgeInsets.only(left: 25,bottom: 15),
             child: Text(appName,style: TextStyle(color: textColor,fontSize: SizeConfig.blockSizeHorizontal!*6,fontWeight: FontWeight.bold),),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.5,
-            height: 50,
-            child: const Padding(
-              padding: EdgeInsets.only(bottom:15),
-              child: TextField(
-                style: TextStyle(color: Colors.white),
-                cursorColor: Colors.white,
-                decoration: InputDecoration(
-                    hintText: "search",
-                    labelText: "Search",
-                    labelStyle: TextStyle(color: Colors.white),
-                    hintStyle: TextStyle(color: Colors.white),
-                    suffixIcon: Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ),
-                    fillColor: lightBlack,
-                    filled: true),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 25,bottom: 15),
-            child: SvgPicture.asset('assets/icons/sliders.svg',color: textColor,),
-          )
+         Row(
+           children: [
+             SizedBox(
+               width: MediaQuery.of(context).size.width * 0.5,
+               height: 50,
+               child: const Padding(
+                 padding: EdgeInsets.only(bottom:10),
+                 child: TextField(
+                   style: TextStyle(color: Colors.white),
+                   cursorColor: Colors.white,
+                   decoration: InputDecoration(
+                       hintText: "search",
+                       labelText: "Search",
+                       labelStyle: TextStyle(color: Colors.white),
+                       hintStyle: TextStyle(color: Colors.white),
+                       suffixIcon: Icon(
+                         Icons.search,
+                         color: Colors.white,
+                       ),
+                       fillColor: lightBlack,
+                       filled: true),
+                 ),
+               ),
+             ),
+             Padding(
+               padding: const EdgeInsets.only(left: 25,bottom: 8),
+               child: SvgPicture.asset('assets/icons/sliders.svg',color: textColor,),
+             )
+           ],
+         )
 
 
         ],

@@ -21,7 +21,7 @@ class _RegionFormState extends State<RegionForm> {
     SizeConfig().init(context);
     return Column(
       children: [
-        headingText("Add tax"),
+        headingText("Add Region"),
         spacer(10),
         columUserTextFiledsBlack("Enter Region name", "Region name", TextInputType.none, taxController),
         spacer(10),

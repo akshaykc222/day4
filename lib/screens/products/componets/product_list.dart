@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:seed_sales/screens/products/body.dart';
-import 'package:seed_sales/screens/tax/components/add_tax.dart';
 
 import '../../../componets.dart';
 import '../../../constants.dart';
