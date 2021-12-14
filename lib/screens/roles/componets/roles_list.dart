@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:seed_sales/componets.dart';
 import 'package:seed_sales/constants.dart';
 import 'package:seed_sales/screens/roles/body.dart';
 import 'package:seed_sales/screens/roles/componets/add_role.dart';
+import 'package:seed_sales/screens/roles/models/role_model.dart';
+import 'package:seed_sales/screens/roles/provider/role_provider.dart';
 import 'package:seed_sales/sizeconfig.dart';
 
 class RoleList extends StatefulWidget {
@@ -15,20 +18,7 @@ class RoleList extends StatefulWidget {
 }
 
 class _RoleListState extends State<RoleList> {
-  final List<String> roleUserList = [
-    "staff",
-    "admin",
-    "manager",
-    "staff",
-    "admin",
-    "manager",
-    "staff",
-    "admin",
-    "manager",
-    "staff",
-    "admin",
-    "manager",
-  ];
+
   void showAddRole(BuildContext _context) {
     showModalBottomSheet(
         context: _context,
@@ -44,6 +34,13 @@ class _RoleListState extends State<RoleList> {
           );
         });
   }
+  @override
+  void initState() {
+
+    super.initState();
+    Provider.of<RoleProviderNew>(context,listen: false).getFromFirebase();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -103,18 +100,23 @@ class _RoleListState extends State<RoleList> {
           color: lightBlack,
           child: Padding(
             padding: const EdgeInsets.only(bottom: 30),
-            child: GridView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: roleUserList.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
-                  childAspectRatio:
-                      MediaQuery.of(context).size.width * 0.3 / 80),
-              itemBuilder: (_, index) {
-                return RoleListTile(title: roleUserList[index]);
-              },
+            child: Consumer<RoleProviderNew>(
+
+              builder: (context, snapshot,child) {
+                return GridView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: snapshot.roleList.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 5,
+                      childAspectRatio:
+                          MediaQuery.of(context).size.width * 0.3 / 80),
+                  itemBuilder: (_, index) {
+                    return RoleListTile(title: snapshot.roleList[index]);
+                  },
+                );
+              }
             ),
           )),
       floatingActionButton: FloatingActionButton(
@@ -186,7 +188,7 @@ Widget roleName() {
 }
 
 class RoleListTile extends StatelessWidget {
-  final String title;
+  final Roles title;
   const RoleListTile({Key? key, required this.title}) : super(key: key);
 
   @override
@@ -205,7 +207,7 @@ class RoleListTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                title,
+                title.roleName,
                 style: const TextStyle(
                     color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
               ),

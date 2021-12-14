@@ -13,7 +13,7 @@ class RoleProviderNew with ChangeNotifier{
     notifyListeners();
     FirebaseDatabaseWeb.instance
         .reference()
-        .child("business")
+        .child("Roles")
         .onValue
         .listen((event) {
       Map<String, dynamic> d = event.value;
@@ -42,6 +42,7 @@ class RoleProviderNew with ChangeNotifier{
               actions: <Widget>[
                 CupertinoDialogAction(
                   onPressed: () {
+                    getFromFirebase();
                     Navigator.pop(context);
                   },
                   child: const Text('Ok'),
@@ -51,5 +52,28 @@ class RoleProviderNew with ChangeNotifier{
           });
     }).onError((error, stackTrace) => ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(error.toString()))));
+  }
+  void deletBusines(BusinessModel model, BuildContext context) {
+    Database db = database();
+    DatabaseReference ref = db.ref("Roles");
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: const Text('Delete'),
+            content: const Text('This will delete this business'),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                onPressed: () {
+                  ref.child(model.id).remove();
+                  Navigator.pop(context);
+                  getFromFirebase();
+
+                },
+                child: const Text('delete'),
+              ),
+            ],
+          );
+        });
   }
 }
