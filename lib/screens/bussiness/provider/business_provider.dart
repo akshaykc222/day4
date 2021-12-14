@@ -78,4 +78,23 @@ class BusinessProvider with ChangeNotifier {
           );
         });
   }
+
+  BusinessModel? selectedBusiness ;
+
+  void setDropDownValue(BusinessModel value) {
+    selectedBusiness = value;
+    notifyListeners();
+  }
+
+  List<BusinessModel> selectedBussinessList = [];
+
+  void setSelectedBussiness() {
+    if (selectedBussinessList.contains(selectedBusiness)) {
+      selectedBussinessList.remove(selectedBusiness);
+    }
+    selectedBussinessList.add(selectedBusiness!);
+    notifyListeners();
+  }
+
+
 }

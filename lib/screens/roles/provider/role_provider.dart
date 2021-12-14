@@ -8,6 +8,7 @@ import '../../bussiness/models/bussinessmode.dart';
 
 class RoleProviderNew with ChangeNotifier{
   List<Roles> roleList=[];
+  Roles? selectedDropdownvalue;
   void getFromFirebase(){
     roleList.clear();
     notifyListeners();
@@ -53,7 +54,7 @@ class RoleProviderNew with ChangeNotifier{
     }).onError((error, stackTrace) => ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(error.toString()))));
   }
-  void deletBusines(BusinessModel model, BuildContext context) {
+  void deletBusines(Roles model, BuildContext context) {
     Database db = database();
     DatabaseReference ref = db.ref("Roles");
     showDialog(
@@ -75,5 +76,9 @@ class RoleProviderNew with ChangeNotifier{
             ],
           );
         });
+  }
+  void setSelectedList(Roles item) {
+    selectedDropdownvalue = item;
+    notifyListeners();
   }
 }

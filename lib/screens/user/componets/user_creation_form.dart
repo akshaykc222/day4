@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seed_sales/screens/bussiness/models/bussinessmode.dart';
+import 'package:seed_sales/screens/bussiness/provider/business_provider.dart';
+import 'package:seed_sales/screens/roles/models/role_model.dart';
 import 'package:seed_sales/screens/user/provider/bussiness_provider.dart';
 import 'package:seed_sales/screens/user/provider/roles_provider.dart';
 
 import '../../../componets.dart';
 import '../../../constants.dart';
+import '../../roles/provider/role_provider.dart';
 import 'add_company.dart';
 
 class UserCreationForm extends StatefulWidget {
@@ -116,7 +120,7 @@ class _SelectBussinesState extends State<SelectBussines> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child:
-              Consumer<BussinessProvider>(builder: (context, provider, child) {
+              Consumer<BusinessProvider>(builder: (context, provider, child) {
             return DropdownButtonFormField(
               value: provider.selectedBusiness,
               icon: const Icon(Icons.keyboard_arrow_down),
@@ -125,10 +129,10 @@ class _SelectBussinesState extends State<SelectBussines> {
                   floatingLabelBehavior: FloatingLabelBehavior.auto,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20))),
-              items: provider.bussinesList
-                  .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+              items: provider.businessList
+                  .map((e) => DropdownMenuItem<BusinessModel>(value: e, child: Text(e.name)))
                   .toList(),
-              onChanged: (String? value) {
+              onChanged: (BusinessModel? value) {
                 setState(() {
                   provider.setDropDownValue(value!);
                 });
@@ -138,7 +142,7 @@ class _SelectBussinesState extends State<SelectBussines> {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Consumer<RoleProvider>(builder: (context, provider, child) {
+          child: Consumer<RoleProviderNew>(builder: (context, provider, child) {
             return DropdownButtonFormField(
               value: provider.selectedDropdownvalue,
               icon: const Icon(Icons.keyboard_arrow_down),
@@ -162,9 +166,9 @@ class _SelectBussinesState extends State<SelectBussines> {
                   border: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.white30))),
               items: provider.roleList
-                  .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                  .map((e) => DropdownMenuItem<Roles>(value: e, child: Text(e.roleName)))
                   .toList(),
-              onChanged: (String? value) {
+              onChanged: (Roles? value) {
                 setState(() {
                   provider.setSelectedList(value!);
                 });
@@ -176,7 +180,7 @@ class _SelectBussinesState extends State<SelectBussines> {
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
               onTap: () {
-                Provider.of<BussinessProvider>(context, listen: false)
+                Provider.of<BusinessProvider>(context, listen: false)
                     .setSelectedBussiness();
                 Navigator.pop(context);
               },

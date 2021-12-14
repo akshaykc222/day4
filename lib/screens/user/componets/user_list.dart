@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:seed_sales/componets.dart';
 import 'package:seed_sales/constants.dart';
 import 'package:seed_sales/screens/user/body.dart';
+import 'package:seed_sales/screens/user/models/user_model.dart';
+import 'package:seed_sales/screens/user/provider/users_provider.dart';
 
-class UserList extends StatelessWidget {
+class UserList extends StatefulWidget {
   const UserList({Key? key}) : super(key: key);
 
+  @override
+  State<UserList> createState() => _UserListState();
+}
+
+class _UserListState extends State<UserList> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<UserProviderNew>(context,listen: false).getBusinessList();
+  }
   @override
   Widget build(BuildContext context) {
     List<String> userList = ["akshay", "jomey", "rakesh"];
@@ -17,18 +31,23 @@ class UserList extends StatelessWidget {
       body: Expanded(
         child: Container(
           color: lightBlack,
-          child: GridView.builder(
-              shrinkWrap: true,
-              itemCount: userList.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
-                  childAspectRatio:
-                      MediaQuery.of(context).size.width * 0.3 / 90),
-              itemBuilder: (_, index) {
-                return UserListTile(title: userList[index]);
-              }),
+          child: Consumer<UserProviderNew>(
+
+            builder: (context, snapshot,child) {
+              return GridView.builder(
+                  shrinkWrap: true,
+                  itemCount: snapshot.businessList.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 5,
+                      childAspectRatio:
+                          MediaQuery.of(context).size.width * 0.3 / 90),
+                  itemBuilder: (_, index) {
+                    return UserListTile(title: snapshot.businessList[index]);
+                  });
+            }
+          ),
         ),
       ),
       bottomNavigationBar: const BottomAppBar(
@@ -54,7 +73,7 @@ class UserList extends StatelessWidget {
 }
 
 class UserListTile extends StatelessWidget {
-  final String title;
+  final UserModel title;
   const UserListTile({Key? key, required this.title}) : super(key: key);
 
   @override
@@ -70,7 +89,7 @@ class UserListTile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                title,
+                title.name,
                 style: const TextStyle(
                     color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
               ),
@@ -79,19 +98,24 @@ class UserListTile extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: lightBlack),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SvgPicture.asset(
-                        'assets/icons/trash.svg',
-                        width: 20,
-                        height: 20,
-                        color: whiteColor,
-                      ),
-                    )),
+                InkWell(
+                  onTap: (){
+                    Provider.of<UserProviderNew>(context,listen: false).deletBusines(title, context);
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: lightBlack),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset(
+                          'assets/icons/trash.svg',
+                          width: 20,
+                          height: 20,
+                          color: whiteColor,
+                        ),
+                      )),
+                ),
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),

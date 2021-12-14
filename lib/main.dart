@@ -6,6 +6,7 @@ import 'package:seed_sales/screens/Desingation/provider/desingation_provider.dar
 import 'package:seed_sales/screens/dashbord/provider/dashboard_provider.dart';
 import 'package:seed_sales/screens/login/provider/login_provider.dart';
 import 'package:seed_sales/screens/roles/provider/role_provider.dart';
+import 'package:seed_sales/screens/user/provider/users_provider.dart';
 
 import 'screens/bussiness/provider/business_provider.dart';
 import 'screens/user/provider/bussiness_provider.dart';
@@ -43,6 +44,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => RoleProviderNew()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => BusinessProvider()),
+        ChangeNotifierProvider(create: (_)=>UserProviderNew())
+
       ],
       child: MaterialApp(
         color: blackColor,

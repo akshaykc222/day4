@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seed_sales/screens/bussiness/provider/business_provider.dart';
 import 'package:seed_sales/screens/user/provider/bussiness_provider.dart';
 
 class AddCompany extends StatefulWidget {
@@ -11,19 +12,26 @@ class AddCompany extends StatefulWidget {
 
 class _AddCompanyState extends State<AddCompany> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<BusinessProvider>(context,listen: false).getBusinessList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-      child: Consumer<BussinessProvider>(builder: (context, snapshot, child) {
+      child: Consumer<BusinessProvider>(builder: (context, snapshot, child) {
         return GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: snapshot.listSelectedBusiness().length,
+            itemCount: snapshot.businessList.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4, crossAxisSpacing: 5, mainAxisSpacing: 5),
             itemBuilder: (_, index) {
               return AddBussinesChip(
-                  bussiness: snapshot.listSelectedBusiness()[index]);
+                  bussiness: snapshot.selectedBussinessList[index].name);
             });
       }),
     );

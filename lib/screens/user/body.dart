@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:seed_sales/componets.dart';
 import 'package:seed_sales/constants.dart';
@@ -15,9 +16,12 @@ class UserCreation extends StatelessWidget {
       appBar: appBar("User Creation", [], context),
       body: Container(
         color: lightBlack,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: const [UserCreationForm()],
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: const [UserCreationForm()],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

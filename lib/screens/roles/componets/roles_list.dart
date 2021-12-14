@@ -215,19 +215,25 @@ class RoleListTile extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: lightBlack),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SvgPicture.asset(
-                          'assets/icons/trash.svg',
-                          width: 20,
-                          height: 20,
-                          color: whiteColor,
-                        ),
-                      )),
+
+                 InkWell(
+                   onTap: (){
+                     Provider.of<RoleProviderNew>(context,listen: false).deletBusines(title, context);
+                   },
+                   child:  Container(
+                       decoration: BoxDecoration(
+                           borderRadius: BorderRadius.circular(8),
+                           color: lightBlack),
+                       child: Padding(
+                         padding: const EdgeInsets.all(8.0),
+                         child: SvgPicture.asset(
+                           'assets/icons/trash.svg',
+                           width: 20,
+                           height: 20,
+                           color: whiteColor,
+                         ),
+                       )),
+                 ),
                   Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
