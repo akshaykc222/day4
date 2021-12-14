@@ -11,6 +11,7 @@ class BusinessProvider with ChangeNotifier {
   List<BusinessModel> businessList = [];
 
   void getBusinessList() {
+    businessList.clear();
     FirebaseDatabaseWeb.instance
         .reference()
         .child("business")
@@ -21,6 +22,7 @@ class BusinessProvider with ChangeNotifier {
         BusinessModel m = BusinessModel.fromJson(element);
         print(m);
         businessList.add(m);
+        notifyListeners();
       });
     });
   }
@@ -65,6 +67,8 @@ class BusinessProvider with ChangeNotifier {
               CupertinoDialogAction(
                 onPressed: () {
                   ref.child(model.id).remove();
+                  businessList.remove(model);
+                  notifyListeners();
                 },
                 child: const Text('delete'),
               ),

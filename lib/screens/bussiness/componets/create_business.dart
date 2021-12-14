@@ -106,7 +106,7 @@ class _CreateBussinessState extends State<CreateBussiness> {
           columUserTextFileds(
               "Enter City name", "City", TextInputType.name, cityController),
           columUserTextFileds("Enter tax number", "Tax number",
-              TextInputType.none, taxController),
+              TextInputType.name, taxController),
           InkWell(
               onTap: () {
                 _upload();

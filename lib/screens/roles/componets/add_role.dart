@@ -13,7 +13,7 @@ class RoleForm extends StatefulWidget {
 
 class _RoleFormState extends State<RoleForm> {
   final taxController=TextEditingController();
-  final taxShortController=TextEditingController();
+  final roleEdit=TextEditingController();
   final taxPercentageController=TextEditingController();
 
   @override
@@ -23,7 +23,7 @@ class _RoleFormState extends State<RoleForm> {
       children: [
         headingText("Add Role"),
         spacer(10),
-        columUserTextFiledsBlack("Enter Role name", "Role name", TextInputType.none, taxController),
+        columUserTextFiledsBlack("Enter Role name", "Role name", TextInputType.none, roleEdit),
         spacer(10),
         // columUserTextFiledsBlack("Enter tax short name", "Tax short name", TextInputType.none, taxPercentageController),
         // spacer(10),
@@ -35,7 +35,7 @@ class _RoleFormState extends State<RoleForm> {
 
             InkWell(
                 onTap: (){
-                  Navigator.pop(context);
+
                 },
                 child:const Text(cancel,style: TextStyle(color: blackColor),))
           ],
