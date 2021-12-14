@@ -19,35 +19,50 @@ class _RoleFormState extends State<RoleForm> {
   final taxController=TextEditingController();
   final roleEdit=TextEditingController();
   final taxPercentageController=TextEditingController();
-
+  final formKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Column(
-      children: [
-        headingText("Add Role"),
-        spacer(10),
-        columUserTextFiledsBlack("Enter Role name", "Role name", TextInputType.none, roleEdit),
-        spacer(10),
-        // columUserTextFiledsBlack("Enter tax short name", "Tax short name", TextInputType.none, taxPercentageController),
-        // spacer(10),
-        // columUserTextFiledsBlack("Enter tax percentage", "Tax percentage", TextInputType.number, taxPercentageController),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            defaultButton(SizeConfig.screenWidth!*0.5, add),
+    return Form(
+      key: formKey,
+      child: Column(
+        children: [
+          headingText("Add Role"),
+          spacer(10),
+          columUserTextFiledsBlack("Enter Role name", "Role name", TextInputType.none, roleEdit),
+          spacer(10),
+          // columUserTextFiledsBlack("Enter tax short name", "Tax short name", TextInputType.none, taxPercentageController),
+          // spacer(10),
+          // columUserTextFiledsBlack("Enter tax percentage", "Tax percentage", TextInputType.number, taxPercentageController),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              InkWell(
+      onTap: ()
+        {
+        print("gbgb");
+        if(formKey.currentState!.validate()){
+        print("gbgb");
+        var uuid=const Uuid();
+        Roles role=Roles(id: uuid.v1() , roleName: roleEdit.text);
+        Provider.of<RoleProviderNew>(context,listen: false).addToFirebase(role, context);
+        }else{
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Enter role name")));
+        }
+        },
+                  child: defaultButton(SizeConfig.screenWidth!*0.5, add)),
 
-            InkWell(
-                onTap: (){
-                  var uuid=Uuid();
-                    Roles role=Roles(id: uuid.v1() , roleName: roleEdit.text);
-                    Provider.of<RoleProvider>(context,listen: false).addToFirebase(role, context);
-                },
-                child:const Text(cancel,style: TextStyle(color: blackColor),))
-          ],
-        ),
-        spacer(10)
-      ],
+              InkWell(
+                  onTap: (){
+                    Navigator.pop(context);
+
+                  },
+                  child:const Text(cancel,style: TextStyle(color: blackColor),))
+            ],
+          ),
+          spacer(10)
+        ],
+      ),
     );
   }
 }
