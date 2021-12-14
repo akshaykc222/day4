@@ -2,11 +2,11 @@ import 'package:seed_sales/screens/roles/models/role_model.dart';
 
 class UserModel {
   String id;
-  String name;
-  String email;
-  String phone;
-  String password;
-  List<Roles> roles;
+  String? name;
+  String? email;
+  String? phone;
+  String? password;
+  List<Roles>? roles;
 
   UserModel(
       {required this.id,
@@ -39,9 +39,14 @@ class UserModel {
     data['email'] = email;
     data['phone'] = phone;
     data['password'] = password;
-    if (roles.isNotEmpty) {
-      data['roles'] = roles.map((v) => v.toJson()).toList();
+    if(data.containsKey('roles')){
+      if (roles!.isNotEmpty) {
+        data['roles'] = roles?.map((v) => v.toJson()).toList();
+      }
+    }else{
+      data['role']=[];
     }
+
     return data;
   }
 }

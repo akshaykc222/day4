@@ -23,14 +23,14 @@ class _AddCompanyState extends State<AddCompany> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
       child: Consumer<BusinessProvider>(builder: (context, snapshot, child) {
-        return snapshot.businessList.isEmpty?Container(): GridView.builder(
+        return snapshot.selectedBussinessList.isEmpty||snapshot.businessList.length==0?Container(): GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: snapshot.businessList.length,
+            itemCount: snapshot.selectedBussinessList.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4, crossAxisSpacing: 5, mainAxisSpacing: 5),
             itemBuilder: (_, index) {
-              return AddBussinesChip(
+              return snapshot.businessList.isEmpty?Container(): AddBussinesChip(
                   bussiness: snapshot.selectedBussinessList[index].name);
             });
       }),
