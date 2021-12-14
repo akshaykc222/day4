@@ -25,13 +25,13 @@ class UserCreation extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: black90,
-        onPressed: () {},
-        child: const Center(
-          child: Icon(Icons.done, color: textColor),
-        ),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: black90,
+      //   onPressed: () {},
+      //   child: const Center(
+      //     child: Icon(Icons.done, color: textColor),
+      //   ),
+      // ),
       bottomNavigationBar: const BottomAppBar(
         color: blackColor,
         clipBehavior: Clip.antiAlias,

@@ -4,8 +4,11 @@ import 'package:provider/provider.dart';
 import 'package:seed_sales/screens/bussiness/models/bussinessmode.dart';
 import 'package:seed_sales/screens/bussiness/provider/business_provider.dart';
 import 'package:seed_sales/screens/roles/models/role_model.dart';
+import 'package:seed_sales/screens/user/models/user_model.dart';
 import 'package:seed_sales/screens/user/provider/bussiness_provider.dart';
 import 'package:seed_sales/screens/user/provider/roles_provider.dart';
+import 'package:seed_sales/screens/user/provider/users_provider.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../componets.dart';
 import '../../../constants.dart';
@@ -95,6 +98,13 @@ class _UserCreationFormState extends State<UserCreationForm> {
           ),
           spacer(10),
           const AddCompany(),
+          InkWell(
+            onTap: (){
+              var uuid=Uuid();
+              UserModel model=UserModel(id: uuid.v1(), name: nameController.text, email: mailController.text, phone: phoneController.text, password: passwordController.text, roles: []);
+              Provider.of<UserProviderNew>(context,listen: false).addToFirebase(model, context);
+            },
+              child: defaultButton(MediaQuery.of(context).size.width * 0.4, add))
         ],
       ),
     );
