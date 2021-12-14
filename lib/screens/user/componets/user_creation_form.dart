@@ -27,6 +27,13 @@ class _UserCreationFormState extends State<UserCreationForm> {
   final confirmPassController = TextEditingController();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<RoleProviderNew>(context,listen: false).getFromFirebase();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,

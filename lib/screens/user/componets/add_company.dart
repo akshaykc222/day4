@@ -23,7 +23,7 @@ class _AddCompanyState extends State<AddCompany> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
       child: Consumer<BusinessProvider>(builder: (context, snapshot, child) {
-        return GridView.builder(
+        return snapshot.businessList.isEmpty?Container(): GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: snapshot.businessList.length,
