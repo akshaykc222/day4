@@ -104,7 +104,8 @@ class _UserCreationFormState extends State<UserCreationForm> {
               UserModel model=UserModel(id: uuid.v1(), name: nameController.text, email: mailController.text, phone: phoneController.text, password: passwordController.text, roles: []);
               Provider.of<UserProviderNew>(context,listen: false).addToFirebase(model, context);
             },
-              child: defaultButton(MediaQuery.of(context).size.width * 0.4, add))
+              child: defaultButton(MediaQuery.of(context).size.width * 0.6, add)),
+          spacer(60)
         ],
       ),
     );

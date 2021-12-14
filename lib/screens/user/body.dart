@@ -32,15 +32,15 @@ class UserCreation extends StatelessWidget {
       //     child: Icon(Icons.done, color: textColor),
       //   ),
       // ),
-      bottomNavigationBar: const BottomAppBar(
-        color: blackColor,
-        clipBehavior: Clip.antiAlias,
-        shape: CircularNotchedRectangle(),
-        child: SizedBox(
-          height: 50,
-          width: double.infinity,
-        ),
-      ),
+      // bottomNavigationBar: const BottomAppBar(
+      //   color: blackColor,
+      //   clipBehavior: Clip.antiAlias,
+      //   shape: CircularNotchedRectangle(),
+      //   child: SizedBox(
+      //     height: 50,
+      //     width: double.infinity,
+      //   ),
+      // ),
     );
   }
 }
