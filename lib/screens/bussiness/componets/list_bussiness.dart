@@ -150,7 +150,9 @@ class UserListTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Provider.of<BusinessProvider>(context,listen: false).deletBusines(model, context);
+                  },
                   child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
