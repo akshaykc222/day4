@@ -40,7 +40,7 @@ class CustomerList extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: lightBlack,
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (_)=>const CustomerListForm()));
+          // Navigator.push(context, MaterialPageRoute(builder: (_)=>const CustomerListForm()));
          // showAlertDelete1(context);
         },
         child: const Center(
@@ -89,7 +89,7 @@ class CustomerListTile extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("${model.pendingAmt}",style:TextStyle(fontWeight: FontWeight.bold,fontSize: SizeConfig.blockSizeHorizontal!*4.5,color: Colors.redAccent),),
+                      child: Text("190000",style:TextStyle(fontWeight: FontWeight.bold,fontSize: SizeConfig.blockSizeHorizontal!*4.5,color: Colors.redAccent),),
                     ),
                   ],
                 ),
