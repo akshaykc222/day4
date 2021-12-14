@@ -47,8 +47,8 @@ class RouterPage {
       //   return MaterialPageRoute(builder: (_) => const OrderProducts());
       // case enquiry:
       //   return MaterialPageRoute(builder: (_) => const Enquiry());
-      case customers:
-        return MaterialPageRoute(builder: (_) => const CustomerList());
+      // case customers:
+      //   return MaterialPageRoute(builder: (_) => const CustomerList());
       case designation:
         return MaterialPageRoute(builder: (_) => const Designations());
       case loginNav:
