@@ -1,10 +1,30 @@
 import 'package:firebase/firebase.dart';
+import 'package:firebase_db_web_unofficial/firebasedbwebunofficial.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:seed_sales/screens/roles/models/role_model.dart';
 
+import '../../bussiness/models/bussinessmode.dart';
+
 class RoleProvider with ChangeNotifier{
   List<Roles> roleList=[];
+  void getFromFirebase(){
+    roleList.clear();
+    notifyListeners();
+    FirebaseDatabaseWeb.instance
+        .reference()
+        .child("business")
+        .onValue
+        .listen((event) {
+      Map<String, dynamic> d = event.value;
+      d.values.forEach((element) {
+        Roles m = Roles.fromJson(element);
+        print(m);
+        roleList.add(m);
+        notifyListeners();
+      });
+    });
+  }
 
   void addToFirebase(Roles model, BuildContext context) {
     print('adding');
