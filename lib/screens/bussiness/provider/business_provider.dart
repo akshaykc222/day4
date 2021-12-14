@@ -12,6 +12,7 @@ class BusinessProvider with ChangeNotifier {
 
   void getBusinessList() {
     businessList.clear();
+    notifyListeners();
     FirebaseDatabaseWeb.instance
         .reference()
         .child("business")

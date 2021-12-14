@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:seed_sales/constants.dart';
+import 'package:seed_sales/screens/roles/models/role_model.dart';
+import 'package:seed_sales/screens/roles/provider/role_provider.dart';
 import 'package:seed_sales/sizeconfig.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../componets.dart';
 
@@ -35,7 +39,9 @@ class _RoleFormState extends State<RoleForm> {
 
             InkWell(
                 onTap: (){
-
+                  var uuid=Uuid();
+                    Roles role=Roles(id: uuid.v1() , roleName: roleEdit.text);
+                    Provider.of<RoleProvider>(context,listen: false).addToFirebase(role, context);
                 },
                 child:const Text(cancel,style: TextStyle(color: blackColor),))
           ],
