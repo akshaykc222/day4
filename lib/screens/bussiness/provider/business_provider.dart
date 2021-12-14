@@ -67,8 +67,8 @@ class BusinessProvider with ChangeNotifier {
               CupertinoDialogAction(
                 onPressed: () {
                   ref.child(model.id).remove();
-                  businessList.remove(model);
-                  notifyListeners();
+                  getBusinessList();
+                  Navigator.pop(context);
                 },
                 child: const Text('delete'),
               ),
