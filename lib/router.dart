@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seed_sales/screens/customers/body.dart';
 import 'package:seed_sales/screens/dashbord/body.dart';
+import 'package:seed_sales/screens/login/body.dart';
 import 'package:seed_sales/screens/products/componets/product_list.dart';
 import 'package:seed_sales/screens/region/body.dart';
 import 'package:seed_sales/screens/roles/componets/roles_list.dart';
@@ -49,6 +50,8 @@ class RouterPage {
         return MaterialPageRoute(builder: (_) => const CustomerList());
       case designation:
         return MaterialPageRoute(builder: (_) => const Designations());
+      case loginNav:
+        return MaterialPageRoute(builder: (_) => const Login());
       // case reports:
       //   return MaterialPageRoute(builder: (_) => const Reports());
       default:

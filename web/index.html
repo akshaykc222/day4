@@ -27,10 +27,36 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <title>fresh</title>
+  
     <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
+  <script src="https://api.daytonsquareroots.org/firebasedatabaseweb/v0.0.2/app.js" defer></script>
+  
+  
+    
+    <script>
+  
+      const firebaseConfig = {
+        apiKey: "AIzaSyAxOsMzAEyHkh1WvccFG4HkD3QpP9R4SWQ",
+        authDomain: "fresh-1b966.firebaseapp.com",
+        databaseURL: "https://fresh-1b966-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "fresh-1b966",
+        storageBucket: "fresh-1b966.appspot.com",
+        messagingSenderId: "770682582470",
+        appId: "1:770682582470:web:514a41533ccf8aaf2f6ec7",
+        measurementId: "G-B8C8ESHQ7B"
+      };
+   // firebase.initializeApp(firebaseConfig);
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app); 
+  </script>
 <div class="center">
     <div class="sk-chase">
         <div class="sk-chase-dot"></div>
@@ -41,6 +67,14 @@
         <div class="sk-chase-dot"></div>
     </div>
 </div>
+
+
+  
+  
+ 
+
+
+
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->

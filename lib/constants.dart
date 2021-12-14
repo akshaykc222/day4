@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+//base url
+
+const baseUrl = "freshdjangoapi.herokuapp.com";
+
 //routes
 const String adminPanel = "/";
 const String roles = "/roles";
@@ -16,9 +20,10 @@ const String customers = "/customers";
 const String designation = "/Designation";
 const String reports = "/reports";
 const String roleList = "/roleList";
-const String taxNav="/tax";
-const String unitNav="/unit";
-const String regionNav="/region";
+const String taxNav = "/tax";
+const String unitNav = "/unit";
+const String regionNav = "/region";
+const String loginNav = "/login";
 //strings
 const String search = "Search";
 const String currentuser = "Current User";
@@ -29,7 +34,7 @@ const String create = "Create";
 const String add = "Add";
 const String cancel = "Cancel";
 const String addUserRole = "Add User Role";
-const String appName="Fresh";
+const String appName = "Fresh";
 //images
 
 //colors

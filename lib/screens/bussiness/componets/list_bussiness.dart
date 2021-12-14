@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:seed_sales/screens/bussiness/body.dart';
+import 'package:seed_sales/screens/bussiness/models/bussinessmode.dart';
+import 'package:seed_sales/screens/bussiness/provider/business_provider.dart';
 import 'package:seed_sales/screens/user/body.dart';
 
 import '../../../componets.dart';
 import '../../../constants.dart';
-
-
 
 class BussinessList extends StatefulWidget {
   const BussinessList({Key? key}) : super(key: key);
@@ -16,18 +17,19 @@ class BussinessList extends StatefulWidget {
 }
 
 class _BussinessListState extends State<BussinessList> {
- final List<String> _bussinessList = [
-    "Bussiness 1",
-    "Bussiness 2",
-    "Bussines 3",
-    "Bussiness 4"
-  ];
+  final List<String> _bussinessList = [];
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<BusinessProvider>(context, listen: false).getBusinessList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
       appBar: PreferredSize(
-        preferredSize: Size(MediaQuery.of(context).size.width, 80 ),
+        preferredSize: Size(MediaQuery.of(context).size.width, 80),
         child: Container(
           height: 80,
           color: blackColor,
@@ -41,7 +43,7 @@ class _BussinessListState extends State<BussinessList> {
                 },
                 child: Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Container(
                     decoration: const BoxDecoration(
                         color: lightBlack, shape: BoxShape.circle),
@@ -82,18 +84,20 @@ class _BussinessListState extends State<BussinessList> {
       resizeToAvoidBottomInset: false,
       body: Container(
         color: lightBlack,
-        child: GridView.builder(
-            shrinkWrap: true,
-            itemCount: _bussinessList.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 5,
-                crossAxisSpacing: 5,
-                childAspectRatio:
-                    MediaQuery.of(context).size.width * 0.3 / 90),
-            itemBuilder: (_, index) {
-              return UserListTile(title: _bussinessList[index]);
-            }),
+        child: Consumer<BusinessProvider>(builder: (context, snapshot, child) {
+          return GridView.builder(
+              shrinkWrap: true,
+              itemCount: snapshot.businessList.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 5,
+                  crossAxisSpacing: 5,
+                  childAspectRatio:
+                      MediaQuery.of(context).size.width * 0.3 / 90),
+              itemBuilder: (_, index) {
+                return UserListTile(model: snapshot.businessList[index]);
+              });
+        }),
       ),
       bottomNavigationBar: const BottomAppBar(
         color: blackColor,
@@ -118,8 +122,8 @@ class _BussinessListState extends State<BussinessList> {
 }
 
 class UserListTile extends StatelessWidget {
-  final String title;
-  const UserListTile({Key? key, required this.title}) : super(key: key);
+  final BusinessModel model;
+  const UserListTile({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -134,39 +138,47 @@ class UserListTile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                title,
+                model.name,
                 style: const TextStyle(
-                    color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
+                    color: textColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             spacer(10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: lightBlack),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset(
+                          'assets/icons/trash.svg',
+                          width: 20,
+                          height: 20,
+                          color: whiteColor,
+                        ),
+                      )),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: lightBlack),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SvgPicture.asset(
-                        'assets/icons/trash.svg',
+                        'assets/icons/edit.svg',
                         width: 20,
                         height: 20,
                         color: whiteColor,
                       ),
-                    )),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: lightBlack),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SvgPicture.asset(
-                      'assets/icons/edit.svg',
-                      width: 20,
-                      height: 20,
-                      color: whiteColor,
                     ),
                   ),
                 ),

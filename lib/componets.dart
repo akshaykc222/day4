@@ -129,8 +129,9 @@ Widget columUserTextFileds(String label, String hint, TextInputType keyboard,
     ),
   );
 }
-Widget columUserTextFiledsBlack(String label, String hint, TextInputType keyboard,
-    TextEditingController controller) {
+
+Widget columUserTextFiledsBlack(String label, String hint,
+    TextInputType keyboard, TextEditingController controller) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
     child: TextFormField(
@@ -164,6 +165,7 @@ Widget columUserTextFiledsBlack(String label, String hint, TextInputType keyboar
     ),
   );
 }
+
 Widget headingText(String txt) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
@@ -174,14 +176,16 @@ Widget headingText(String txt) {
     ),
   );
 }
-TextStyle textStyle(double fontSize,FontWeight fontWeight){
+
+TextStyle textStyle(double fontSize, FontWeight fontWeight) {
   return TextStyle(
-    color: textColor,
-    fontSize: fontSize,
-    fontWeight: fontWeight
-  );
+      color: textColor, fontSize: fontSize, fontWeight: fontWeight);
 }
-PreferredSize appBarWithSearch(BuildContext context,String screenName,){
+
+PreferredSize appBarWithSearch(
+  BuildContext context,
+  String screenName,
+) {
   SizeConfig().init(context);
   return PreferredSize(
     preferredSize: Size(SizeConfig.screenWidth!, 100),
@@ -191,16 +195,22 @@ PreferredSize appBarWithSearch(BuildContext context,String screenName,){
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
-        children:  [
+        children: [
           Padding(
-            padding: const EdgeInsets.only(left: 25,bottom: 15),
-            child: Text(appName,style: TextStyle(color: textColor,fontSize: SizeConfig.blockSizeHorizontal!*6,fontWeight: FontWeight.bold),),
+            padding: const EdgeInsets.only(left: 25, bottom: 15),
+            child: Text(
+              appName,
+              style: TextStyle(
+                  color: textColor,
+                  fontSize: SizeConfig.blockSizeHorizontal! * 6,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.5,
             height: 50,
             child: const Padding(
-              padding: EdgeInsets.only(bottom:15),
+              padding: EdgeInsets.only(bottom: 15),
               child: TextField(
                 style: TextStyle(color: Colors.white),
                 cursorColor: Colors.white,
@@ -219,11 +229,12 @@ PreferredSize appBarWithSearch(BuildContext context,String screenName,){
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 25,bottom: 15),
-            child: SvgPicture.asset('assets/icons/sliders.svg',color: textColor,),
+            padding: const EdgeInsets.only(left: 25, bottom: 15),
+            child: SvgPicture.asset(
+              'assets/icons/sliders.svg',
+              color: textColor,
+            ),
           )
-
-
         ],
       ),
     ),
